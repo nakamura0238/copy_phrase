@@ -4,11 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:copy_phrase/models/phrase.dart';
 import 'package:flutter/services.dart';
 
+import 'package:copy_phrase/widgets/overlay_dialog.dart';
 
 class ButtonItem extends ConsumerWidget {
 
   final Phrase _phrase;
-  ButtonItem(this._phrase, {Key? key}) : super(key: key);
+  const ButtonItem(this._phrase, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -28,10 +29,11 @@ class ButtonItem extends ConsumerWidget {
             flex: 8,
             child: TextButton(
               onPressed: () {
-                Clipboard.setData(new ClipboardData(text: _phrase.phrase));
+                showToast(context);
+                Clipboard.setData(ClipboardData(text: _phrase.phrase));
               },
               style: TextButton.styleFrom(
-                padding: EdgeInsets.all(0.0),
+                padding: const EdgeInsets.all(0.0),
                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 backgroundColor: Colors.white,
                 shape: const RoundedRectangleBorder(
