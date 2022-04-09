@@ -33,11 +33,17 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomeScreen extends ConsumerWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  _HomeScreen createState() => _HomeScreen();
+}
+
+class _HomeScreen extends ConsumerState<HomeScreen> {
+
+  @override
+  Widget build(BuildContext context) {
 
   final List<Phrase> _phraseList = ref.watch(phraseProvider.state).state;
     return Scaffold(
@@ -62,25 +68,32 @@ class HomeScreen extends ConsumerWidget {
           ),
         ]
       ),
-
-      body: Center(
-        child: Container(
-          width: double.infinity,
-          height: double.infinity,
-          color: const Color(0xFFD0DEEA),
-          child : ListView.builder(
-            padding: const EdgeInsets.only(
-              left: 10.0,
-              top: 10.0,
-              right: 10.0,
-            ),
-            shrinkWrap: true,
-            itemCount: _phraseList.length,
-            itemBuilder: (BuildContext context, int index) {
-              return ButtonItem(_phraseList[index]);
-            }
-          )
-        )
+      body: Column(
+        children: [
+          Expanded(child:
+          Container(
+            width: double.maxFinite,
+            // height: double.maxFinite,
+            color: const Color(0xFFD0DEEA),
+            child : ListView.builder(
+              padding: const EdgeInsets.only(
+                left: 10.0,
+                top: 10.0,
+                right: 10.0,
+              ),
+              shrinkWrap: true,
+              itemCount: _phraseList.length,
+              itemBuilder: (BuildContext context, int index) {
+                return ButtonItem(_phraseList[index]);
+              }
+            )
+          ),
+          ),
+          // Container(
+          //   height: 50,
+          //   color: Colors.red,
+          // ),
+        ],
       ),
     );
   }
