@@ -4,14 +4,16 @@ import 'dart:async';
 final _overlayEntry = OverlayEntry(builder: (_) => const _Toast());
 
 void showToast(BuildContext context) {
-  if (_overlayEntry.mounted) {
+  if (_overlayEntry != null && _overlayEntry.mounted) {
     _overlayEntry.remove();
   } 
 
-  Navigator.of(context).overlay?.insert(_overlayEntry);
+  if (!_overlayEntry.mounted) {
+    Navigator.of(context).overlay?.insert(_overlayEntry);
+  }
 
   Timer(const Duration(seconds: 1), () {
-    if (_overlayEntry.mounted) _overlayEntry.remove();
+    if (_overlayEntry != null && _overlayEntry.mounted) _overlayEntry.remove();
   });
 }
 

@@ -1,5 +1,6 @@
 import 'package:copy_phrase/providers/phrase_provider.dart';
 import 'package:copy_phrase/screens/add_phrase.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:copy_phrase/material_color/material_color.dart';
 import 'package:copy_phrase/widgets/button_item.dart';
@@ -60,8 +61,8 @@ class _HomeScreen extends ConsumerState<HomeScreen> {
             ),
             onPressed: () => {
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) {
-                  return AddPhrase();
+                  CupertinoPageRoute(builder: (context) {
+                  return const AddPhrase();
                 })
               ),
             }
@@ -71,28 +72,23 @@ class _HomeScreen extends ConsumerState<HomeScreen> {
       body: Column(
         children: [
           Expanded(child:
-          Container(
-            width: double.maxFinite,
-            // height: double.maxFinite,
-            color: const Color(0xFFD0DEEA),
-            child : ListView.builder(
-              padding: const EdgeInsets.only(
-                left: 10.0,
-                top: 10.0,
-                right: 10.0,
-              ),
-              shrinkWrap: true,
-              itemCount: _phraseList.length,
-              itemBuilder: (BuildContext context, int index) {
-                return ButtonItem(_phraseList[index]);
-              }
-            )
+            Container(
+              width: double.maxFinite,
+              color: const Color(0xFFD0DEEA),
+              child : ListView.builder(
+                padding: const EdgeInsets.only(
+                  left: 10.0,
+                  top: 10.0,
+                  right: 10.0,
+                ),
+                shrinkWrap: true,
+                itemCount: _phraseList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return ButtonItem(_phraseList[index]);
+                }
+              )
+            ),
           ),
-          ),
-          // Container(
-          //   height: 50,
-          //   color: Colors.red,
-          // ),
         ],
       ),
     );

@@ -37,7 +37,6 @@ class _EditPhrase extends ConsumerState<EditPhrase> {
     }
 
     final size = MediaQuery.of(context).size.height;
-
     final appBarHeight = ref.watch(appBarHeightProvider);
     final titleHeight = ref.watch(titleHeightProvider);
     final phraseHeight = ref.watch(phraseHeightProvider);
@@ -150,32 +149,6 @@ class _EditPhrase extends ConsumerState<EditPhrase> {
                     maxLines: null,
                   ),
                 ),
-                // const SizedBox(height: 10.0),
-                // SizedBox(
-                //   height: 30,
-                //   width: 100.0,
-                //   child: TextButton(
-                //     onPressed: () async{
-                //       var result = await deleteDialog(context);
-
-                //       if (result!) {
-                //         viewModel.deletePhrase(context, ref, widget.phrase!.id!);
-                //         Navigator.of(context).pop();
-                //       }
-                //     }, 
-                //     style: TextButton.styleFrom(
-                //       elevation: 0,
-                //       padding: const EdgeInsets.all(0),
-                //       backgroundColor: const Color(0xFFE61639),
-                //     ),
-                //     child: const Text(
-                //       "削除",
-                //       style: TextStyle(
-                //         color: Colors.white,
-                //       ),
-                //     ),
-                //   ),
-                // )
               ],
             ),
           ),

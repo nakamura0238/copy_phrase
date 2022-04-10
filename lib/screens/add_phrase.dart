@@ -30,7 +30,6 @@ class _AddPhrase extends ConsumerState<AddPhrase> {
   Widget build(BuildContext context) {
     final viewModel = ref.watch(phraseViewModelProvider.notifier);
     final size = MediaQuery.of(context).size.height;
-
     final appBarHeight = ref.watch(appBarHeightProvider);
     final titleHeight = ref.watch(titleHeightProvider);
     final phraseHeight = ref.watch(phraseHeightProvider);

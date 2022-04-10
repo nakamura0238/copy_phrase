@@ -1,4 +1,5 @@
 import 'package:copy_phrase/screens/edit_phrase.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:copy_phrase/models/phrase.dart';
@@ -63,7 +64,7 @@ class ButtonItem extends ConsumerWidget {
               TextButton(
                 onPressed: () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) {
+                    CupertinoPageRoute(builder: (context) {
                       return EditPhrase(phrase: _phrase);
                     }));
                 },
