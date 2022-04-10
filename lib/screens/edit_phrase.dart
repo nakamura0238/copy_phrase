@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:copy_phrase/models/phrase.dart';
+import 'package:copy_phrase/main.dart';
 
 class EditPhrase extends ConsumerStatefulWidget {
   final Phrase? phrase;
@@ -14,7 +15,7 @@ class EditPhrase extends ConsumerStatefulWidget {
   _EditPhrase createState() => _EditPhrase();
 }
 
-class _EditPhrase extends ConsumerState<EditPhrase> {
+class _EditPhrase extends ConsumerState<EditPhrase> with RouteAware {
   final _key = GlobalKey<FormState>();
   final _appBarKey = GlobalKey();
   final _titleKey = GlobalKey();
@@ -27,6 +28,23 @@ class _EditPhrase extends ConsumerState<EditPhrase> {
       ref.read(titleHeightProvider.notifier).state = _titleKey.currentContext!.size!.height;
       ref.read(phraseHeightProvider.notifier).state = _phraseKey.currentContext!.size!.height;
     });
+  }
+
+  @override
+  void dispose() {
+    routeObserver.unsubscribe(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    routeObserver.subscribe(this, ModalRoute.of(context) as PageRoute);
+  }
+
+  @override
+  void didPop() {
+    // debugPrint("didPop");
   }
 
   @override

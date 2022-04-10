@@ -33,7 +33,7 @@ class PhraseViewModel extends StateNotifier {
     final phrase = Phrase(title: title, phrase: content);
     await _savePhrase(phrase);
 
-    // タスク一覧を再取得して代入
+    // 定型文一覧を再取得して代入
     ref.read(phraseProvider.state).state = await _databaseHelper.getPhraseList();
 
     // 一覧ページへ戻る
@@ -56,7 +56,7 @@ class PhraseViewModel extends StateNotifier {
   Future<void> deletePhrase(BuildContext context,WidgetRef ref, int id) async{
     await _databaseHelper.deletePhrase(id);
 
-    // タスク一覧を再取得して代入
+    // 定型文一覧を再取得して代入
     ref.read(phraseProvider.state).state = await _databaseHelper.getPhraseList();
   }
 }

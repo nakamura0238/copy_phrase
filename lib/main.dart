@@ -8,6 +8,8 @@ import 'package:copy_phrase/database/database.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:copy_phrase/models/phrase.dart';
 
+final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final _phrase = await DatabaseHelper.instance.getPhraseList();
@@ -30,6 +32,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(),
       home: HomeScreen(),
+      navigatorObservers: <NavigatorObserver>[routeObserver],
     );
   }
 }
